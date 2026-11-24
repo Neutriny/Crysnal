@@ -1,5 +1,8 @@
 # Crysnal
 
+> [!WARNING]
+> 项目目前处于前期开发阶段
+
 开源 Minecraft 服务器管理面板
 
 ![Go](https://shieldcn.dev/badge/Go-v12.7.3-FFFFFF.svg?variant=branded&brand=go&size=default&mode=light)
