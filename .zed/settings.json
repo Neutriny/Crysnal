@@ -1,0 +1,35 @@
+{
+  "languages": {
+    "TypeScript": {
+      "language_servers": ["tsgo"]
+    },
+    "Go": {
+      "language_servers": ["gopls"],
+      "hard_tabs": true,
+      "tab_size": 4
+    },
+    "Vue.js": {
+      "language_servers": ["vue"]
+    }
+  },
+  "lsp":{
+    "gopls": {
+      "initialization_options": {
+      "directoryFilters": ["-/web", "-/.idea"]
+      }
+    }
+  },
+  "format_on_save": "on",
+  "tab_size": 2,
+  "colorize_brackets": true,
+  "inlay_hints": {
+    "show_background": true,
+    "enabled": true
+  },
+  "show_whitespaces": "selection",
+  "line_ending": "enforce_lf",
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "coloring": "indent_aware"
+  }
+}
