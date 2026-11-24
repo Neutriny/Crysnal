@@ -7,7 +7,7 @@
 ![Vue.js](https://shieldcn.dev/badge/Vue.js-v3-FFFFFF.svg?variant=branded&brand=vuedotjs&size=default&mode=light)
 ![TypeScript](https://shieldcn.dev/badge/TypeScript-v7-FFFFFF.svg?variant=branded&brand=typescript&size=default&gradient=667eea%2C764ba2&logoColor=fff&mode=light)
 
-![Release + Downloads](https://shieldcn.dev/group/github/stars/neutriny/crysnal+github/license/neutriny/crysnal+github/dt/neutriny/crysnal.svg?variant=branded&size=default&mode=light)
+![Stars + License](https://shieldcn.dev/group/github/stars/neutriny/crysnal+github/license/neutriny/crysnal+github/dt/neutriny/crysnal.svg&size=default&mode=light)
 
 # 概述
 
