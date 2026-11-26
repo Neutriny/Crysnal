@@ -1,16 +1,13 @@
 {
   "languages": {
-    "TypeScript": {
-      "language_servers": ["tsgo"]
-    },
     "Go": {
       "language_servers": ["gopls"],
       "hard_tabs": true,
       "tab_size": 4
     },
-    "Vue.js": {
-      "language_servers": ["vue"]
-    }
+    "Markdown": {
+      "formatter": [{"language_server": {"name": "oxfmt"}}]
+    },
   },
   "lsp":{
     "gopls": {

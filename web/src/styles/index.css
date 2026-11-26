@@ -1,0 +1,49 @@
+/*
+ * 字体：HarmonyOS Sans SC（© 2021 Huawei Device Co., Ltd.，HarmonyOS Sans Fonts License Agreement）。
+ * 字形与表数据完全保持上游原样，仅用 `fonttools ttLib.woff2 compress` 做 ttf → woff2 的无损容器转换，
+ * 未做子集化、未改动任何轮廓/hinting（该许可禁止修改字体的任何组件）。
+ * 许可全文随字体一起分发：web/public/fonts/LICENSE.txt → dist/fonts/LICENSE.txt（许可第 2 条第 4 项）。
+ * 字体放在 web/public/fonts/，Vite 构建时原样复制到 dist/fonts/，因此这里用根绝对路径引用
+ * （部署在子路径时需改为 `${import.meta.env.BASE_URL}fonts/...` 或改用 src/assets）。
+ */
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  src: url('/fonts/HarmonyOS_Sans_SC_Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  src: url('/fonts/HarmonyOS_Sans_SC_Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 回退链：macOS → Windows → Linux，按字形逐个回落（拉丁先走系统 UI 字体）。
+ * macOS：PingFang SC / Hiragino Sans GB；Windows：Microsoft YaHei / Segoe UI；
+ * Linux：Noto Sans CJK SC / Source Han Sans SC / WenQuanYi Micro Hei。
+ * 部署环境若已安装本字体，首选项会直接命中，不会重复下载。 */
+body {
+  font-family:
+    'HarmonyOS Sans SC',
+    -apple-system,
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Segoe UI',
+    'Microsoft YaHei',
+    'Noto Sans CJK SC',
+    'Source Han Sans SC',
+    'WenQuanYi Micro Hei',
+    system-ui,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

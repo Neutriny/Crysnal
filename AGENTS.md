@@ -13,6 +13,11 @@ Crysnal —— Minecraft 服务器管理面板。Go 后端 + Vue 3 SPA，单仓�
 - 前端（`web/` 下）：`pnpm install`、`pnpm dev`、`pnpm build`、`pnpm format`
 - 包管理器只用 pnpm。
 
+## 前端约定
+
+- 路由组件存放在`web/views`目录下，使用大驼峰命名，以“View”结尾。
+- 可复用组件在`web/components`目录，同样使用大驼峰命名。
+
 ## 通用
 
 - 遵循 `.editorconfig`：Go 用 tab，其余用 2 空格，LF 换行。

@@ -1,13 +1,58 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import DashboardView from '@/views/DashboardView.vue'
+import InstanceListView from '@/views/instance/ListView.vue'
+import InstanceCreateView from '@/views/instance/CreateView.vue'
+import FrpListView from '@/views/frp/ListView.vue'
+import Profile from '@/views/setting/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      redirect: '/dashboard/base',
+    },
+    {
+      path: '/dashboard',
+      redirect: '/dashboard/base',
+    },
+    {
+      path: '/dashboard/base',
+      name: 'dashboard-base',
+      component: DashboardView,
+    },
+    {
+      path: '/instance',
+      redirect: '/instance/list',
+    },
+    {
+      path: '/instance/list',
+      name: 'instance-list',
+      component: InstanceListView
+    },
+    {
+      path: '/instance/create',
+      name: 'instance-create',
+      component: InstanceCreateView
+    },
+    {
+      path: '/frp',
+      redirect: '/frp/list',
+    },
+    
+    {
+      path: '/frp/list',
+      name: 'frp-list',
+      component: FrpListView
+    },
+    {
+      path: '/setting',
+      redirect: '/setting/profile',
+    },
+    {
+      path: '/setting/profile',
+      name: 'profile',
+      component: Profile
     },
     {
       path: '/about',

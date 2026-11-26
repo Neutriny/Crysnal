@@ -5,7 +5,7 @@ const counter = useCounterStore()
 </script>
 
 <template>
-  <h1>首页</h1>
+  <h1>仪表盘</h1>
 
   <p>下面这组数字来自 Pinia store，多个页面共享同一份状态。</p>
   <p>count: {{ counter.count }}</p>
