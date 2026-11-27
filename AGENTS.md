@@ -4,7 +4,7 @@ Crysnal —— Minecraft 服务器管理面板。Go 后端 + Vue 3 SPA，单仓�
 
 ## 目录
 
-- `main.go`：入口。业务代码放 `internal/<domain>/`，不要往 `main` 包堆逻辑。
+- `main.go`：入口。业务代码放在 `internal/<domain>/`。
 - `web/`：前端（Vue 3 + TS + Vite + Pinia + Vue Router），产物由 Go `embed` 提供。
 
 ## 命令

@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AboutView from '@/views/AboutView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import InstanceListView from '@/views/instance/ListView.vue'
 import InstanceCreateView from '@/views/instance/CreateView.vue'
 import FrpListView from '@/views/frp/ListView.vue'
-import Profile from '@/views/setting/ProfileView.vue'
+import ProfileView from '@/views/setting/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,22 +29,22 @@ const router = createRouter({
     {
       path: '/instance/list',
       name: 'instance-list',
-      component: InstanceListView
+      component: InstanceListView,
     },
     {
       path: '/instance/create',
       name: 'instance-create',
-      component: InstanceCreateView
+      component: InstanceCreateView,
     },
     {
       path: '/frp',
       redirect: '/frp/list',
     },
-    
+
     {
       path: '/frp/list',
       name: 'frp-list',
-      component: FrpListView
+      component: FrpListView,
     },
     {
       path: '/setting',
@@ -52,13 +53,17 @@ const router = createRouter({
     {
       path: '/setting/profile',
       name: 'profile',
-      component: Profile
+      component: ProfileView,
     },
     {
       path: '/about',
       name: 'about',
-      // 懒加载：只有访问 /about 时才加载这个页面的代码
-      component: () => import('@/views/AboutView.vue'),
+      component: AboutView,
+    },
+    {
+      // 未匹配的路由统一重定向到首页
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
     },
   ],
 })

@@ -1,3 +1,7 @@
 .idea
 
 *.exe
+
+# 构建产物（task 会自动重新生成）
+internal/server/dist/
+internal/server/dist/

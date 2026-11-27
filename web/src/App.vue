@@ -19,40 +19,47 @@ const themeOverrides: GlobalThemeOverrides = {
 <template>
   <NConfigProvider :theme-overrides="themeOverrides">
     <div class="layout">
-      <aside class="sidebar">
+      <header class="header">
         <div class="brand">Crysnal 管理中心</div>
+      </header>
 
-        <nav class="menu">
-          <RouterLink class="menu-link" to="/dashboard/base">仪表盘</RouterLink>
+      <div class="body">
+        <aside class="sidebar">
+          <nav class="menu">
+            <RouterLink class="menu-link" to="/dashboard/base">仪表盘</RouterLink>
 
-          <NCollapse :default-expanded-names="['instance', 'frp', 'setting']" arrow-placement="right">
-            <NCollapseItem title="服务端管理" name="instance">
-              <div class="submenu">
-                <RouterLink class="menu-link" to="/instance/list">服务端列表</RouterLink>
-                <RouterLink class="menu-link" to="/instance/create">创建服务端</RouterLink>
-              </div>
-            </NCollapseItem>
+            <NCollapse
+              :default-expanded-names="['instance', 'frp', 'setting']"
+              arrow-placement="right"
+            >
+              <NCollapseItem title="服务端管理" name="instance">
+                <div class="submenu">
+                  <RouterLink class="menu-link" to="/instance/list">服务端列表</RouterLink>
+                  <RouterLink class="menu-link" to="/instance/create">创建服务端</RouterLink>
+                </div>
+              </NCollapseItem>
 
-            <NCollapseItem title="隧道管理" name="frp">
-              <div class="submenu">
-                <RouterLink class="menu-link" to="/frp/list">隧道列表</RouterLink>
-              </div>
-            </NCollapseItem>
+              <NCollapseItem title="隧道管理" name="frp">
+                <div class="submenu">
+                  <RouterLink class="menu-link" to="/frp/list">隧道列表</RouterLink>
+                </div>
+              </NCollapseItem>
 
-            <NCollapseItem title="设置" name="setting">
-              <div class="submenu">
-                <RouterLink class="menu-link" to="/setting/profile">账户设置</RouterLink>
-              </div>
-            </NCollapseItem>
-          </NCollapse>
+              <NCollapseItem title="设置" name="setting">
+                <div class="submenu">
+                  <RouterLink class="menu-link" to="/setting/profile">账户设置</RouterLink>
+                </div>
+              </NCollapseItem>
+            </NCollapse>
 
-          <RouterLink class="menu-link" to="/about">关于</RouterLink>
-        </nav>
-      </aside>
+            <RouterLink class="menu-link" to="/about">关于</RouterLink>
+          </nav>
+        </aside>
 
-      <main class="content">
-        <RouterView />
-      </main>
+        <main class="content">
+          <RouterView />
+        </main>
+      </div>
     </div>
   </NConfigProvider>
 </template>
@@ -60,7 +67,24 @@ const themeOverrides: GlobalThemeOverrides = {
 <style scoped>
 .layout {
   display: flex;
+  flex-direction: column;
   height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  flex: 0 0 56px;
+  padding: 0 24px;
+  border-bottom: 1px solid #efeff5;
+  background: #fff;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 .sidebar {
@@ -73,8 +97,7 @@ const themeOverrides: GlobalThemeOverrides = {
 }
 
 .brand {
-  padding: 4px 12px 16px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 

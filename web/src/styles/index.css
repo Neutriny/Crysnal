@@ -34,16 +34,8 @@ body {
  * 部署环境若已安装本字体，首选项会直接命中，不会重复下载。 */
 body {
   font-family:
-    'HarmonyOS Sans SC',
-    -apple-system,
-    'PingFang SC',
-    'Hiragino Sans GB',
-    'Segoe UI',
-    'Microsoft YaHei',
-    'Noto Sans CJK SC',
-    'Source Han Sans SC',
-    'WenQuanYi Micro Hei',
-    system-ui,
+    'HarmonyOS Sans SC', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Segoe UI',
+    'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'WenQuanYi Micro Hei', system-ui,
     sans-serif;
   -webkit-font-smoothing: antialiased;
 }

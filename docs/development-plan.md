@@ -53,7 +53,7 @@
 | WebSocket | `coder/websocket` | 维护活跃（gorilla 已归档） |
 | 存储 | SQLite（`modernc.org/sqlite`，纯 Go 免 CGO） | 实例数据量小，一步到位免迁移 |
 | 日志 | `log/slog` | 标准库够用 |
-| 配置 | YAML | 面板自身配置 |
+| 配置 | TOML | 面板自身配置 |
 | 计划任务 | `robfig/cron/v3` | v0.2 引入 |
 
 ### 模块划分
@@ -90,7 +90,7 @@ internal/
 
 5. **面板重启后的状态恢复**：MVP 简单标记为 Stopped，后续可支持按 PID 重新 attach。
 6. **安全**：登录态用 session token（WS 鉴权用 query token）；文件管理严格限制在实例目录内防目录穿越；端口冲突检测。
-7. **路径**：使用 `filepath`，实例目录默认放面板数据目录下（如 `data/instances/<id>/`）。
+7. **路径**：使用 `filepath`。实例目录默认 `%USERPROFILE%\Crysnal\instances\<实例名>`（必然存在、当前用户可写、无需管理员、用户易找到）；默认值由后端 API 返回，前端不自行拼接。实例名需校验 Windows 非法字符与保留名，创建时检查目标盘剩余空间，允许用户改到其他盘。
 
 ### 数据模型草案（单用户）
 

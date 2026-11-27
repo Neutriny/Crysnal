@@ -1,0 +1,60 @@
+version: '3'
+
+# Crysnal 构建任务。CGO_ENABLED=0：不依赖本地 C 工具链，产出可静态编译的 Windows/Linux 二进制。
+# 用法：task（默认）/ task build-backend / task build-frontend / task dev / task clean
+
+vars:
+  GO: go
+  PNPM: pnpm
+  EXE: '{{if eq OS "windows"}}crysnal.exe{{else}}crysnal{{end}}'
+  DIST_SRC: web/dist
+  DIST_DST: internal/server/dist
+
+tasks:
+  default:
+    desc: 构建前端 + 拷贝 dist + 编译 Go（CGO 关闭）
+    deps: [build-backend]
+
+  build-frontend:
+    desc: 构建 Vue 前端（web/）
+    dir: web
+    cmds:
+      - '{{.PNPM}} build'
+
+  copy-dist:
+    desc: 把 web/dist 拷贝到 internal/server/dist（go:embed 的源目录）
+    deps: [build-frontend]
+    cmds:
+      - cmd: >-
+          powershell -NoProfile -Command
+          "New-Item -ItemType Directory -Force -Path '{{.DIST_DST}}' | Out-Null;
+          Copy-Item -Recurse -Force '{{.DIST_SRC}}\*' '{{.DIST_DST}}'"
+        platforms: [windows]
+      - cmd: 'cp -rf {{.DIST_SRC}}/* {{.DIST_DST}}/'
+        platforms: [linux, darwin]
+
+  build-backend:
+    desc: 编译 Go（CGO_ENABLED=0）
+    deps: [copy-dist]
+    env:
+      CGO_ENABLED: '0'
+    cmds:
+      - '{{.GO}} build -o {{.EXE}} .'
+
+  dev:
+    desc: 构建一次后启动 Go 面板（前端热更新请另开终端跑 pnpm dev）
+    deps: [build-backend]
+    cmds:
+      - '{{.EXE}} -addr ":8080"'
+
+  clean:
+    desc: 清理构建产物
+    cmds:
+      - cmd: >-
+          powershell -NoProfile -Command
+          "Remove-Item -Recurse -Force
+          '{{.DIST_DST}}', '{{.DIST_SRC}}', '{{.EXE}}'
+          -ErrorAction SilentlyContinue"
+        platforms: [windows]
+      - cmd: 'rm -rf {{.DIST_DST}} {{.DIST_SRC}} {{.EXE}}'
+        platforms: [linux, darwin]

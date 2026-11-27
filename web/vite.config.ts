@@ -17,6 +17,12 @@ export default defineConfig({
     singleQuote: true,
   },
   plugins: lazyPlugins(() => [UnoCSS(), vue(), vueDevTools()]),
+  server: {
+    // 开发模式下把 API 请求代理到 Go 面板服务
+    proxy: {
+      '/api': 'http://localhost:8080',
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

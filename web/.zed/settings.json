@@ -36,5 +36,6 @@
     "Vue.js": {
       "formatter": [{"language_server": {"name": "oxfmt"}}]
     }
-  }
+  },
+  "format_on_save": "off",
 }
