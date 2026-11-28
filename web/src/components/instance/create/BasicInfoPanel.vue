@@ -22,7 +22,7 @@ const rules: FormRules = {
     </n-form-item>
     <n-form-item label="实例路径" path="path">
       <n-input v-model:value="formValue.path" placeholder="留空使用默认路径" />
-      <template #feedback>默认：%USERPROFILE%\Crysnal\instances\实例名，可改为其他目录</template>
+      <template #feedback>默认：%USERPROFILE%\MC_Servers\实例名，可改为其他目录</template>
     </n-form-item>
   </n-form>
 </template>

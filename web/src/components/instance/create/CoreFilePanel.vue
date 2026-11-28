@@ -52,7 +52,7 @@ function onFilePicked(path: string) {
 
 <template>
   <n-form :model="formValue" :rules="rules" label-placement="top">
-    <n-tabs v-model:value="formValue.core.source" type="segment" animated>
+    <n-tabs v-model:value="formValue.core.source" type="segment" animated class="core-tabs">
       <n-tab-pane name="online" tab="在线下载">
         <n-form-item label="核心类型" path="core.coreType">
           <n-select
@@ -99,3 +99,17 @@ function onFilePicked(path: string) {
     @confirm="onFilePicked"
   />
 </template>
+
+<style scoped>
+/* segment 模式默认撑满整行，这里限制轨道宽度让标签紧凑；pane 不受影响 */
+.core-tabs :deep(.n-tabs-rail) {
+  max-width: 320px;
+}
+
+/* 标签过长时省略，避免撑破轨道 */
+.core-tabs :deep(.n-tabs-tab__label) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>

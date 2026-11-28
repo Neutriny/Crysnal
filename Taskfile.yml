@@ -9,6 +9,11 @@ vars:
   EXE: '{{if eq OS "windows"}}crysnal.exe{{else}}crysnal{{end}}'
   DIST_SRC: web/dist
   DIST_DST: internal/server/dist
+  # 链接时合并进 exe 的 Windows 资源对象（图标 + 版本信息），构建产物、不入库
+  SYSO: rsrc_windows_amd64.syso
+  # 固定版本，避免构建依赖随上游漂移
+  GOVERSIONINFO_PKG: github.com/josephspurrier/goversioninfo/cmd/goversioninfo
+  GOVERSIONINFO_VER: v1.7.0
 
 tasks:
   default:
@@ -33,9 +38,26 @@ tasks:
       - cmd: 'cp -rf {{.DIST_SRC}}/* {{.DIST_DST}}/'
         platforms: [linux, darwin]
 
+  gen-res:
+    desc: 生成 Windows 资源对象（应用图标 + 版本信息）
+    sources:
+      - assets/app.ico
+      - assets/versioninfo.json
+      - Taskfile.yml
+    generates:
+      - '{{.SYSO}}'
+    cmds:
+      # .syso 文件名带 _windows_amd64 后缀，非 windows/amd64 构建会自动忽略它
+      - cmd: >-
+          {{.GO}} run {{.GOVERSIONINFO_PKG}}@{{.GOVERSIONINFO_VER}}
+          -icon assets/app.ico
+          -o {{.SYSO}}
+          assets/versioninfo.json
+        platforms: [windows]
+
   build-backend:
     desc: 编译 Go（CGO_ENABLED=0）
-    deps: [copy-dist]
+    deps: [copy-dist, gen-res]
     env:
       CGO_ENABLED: '0'
     cmds:
@@ -53,8 +75,8 @@ tasks:
       - cmd: >-
           powershell -NoProfile -Command
           "Remove-Item -Recurse -Force
-          '{{.DIST_DST}}', '{{.DIST_SRC}}', '{{.EXE}}'
+          '{{.DIST_DST}}', '{{.DIST_SRC}}', '{{.EXE}}', '{{.SYSO}}'
           -ErrorAction SilentlyContinue"
         platforms: [windows]
-      - cmd: 'rm -rf {{.DIST_DST}} {{.DIST_SRC}} {{.EXE}}'
+      - cmd: 'rm -rf {{.DIST_DST}} {{.DIST_SRC}} {{.EXE}} {{.SYSO}}'
         platforms: [linux, darwin]

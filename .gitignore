@@ -4,4 +4,6 @@
 
 # 构建产物（task 会自动重新生成）
 internal/server/dist/
-internal/server/dist/
+
+# Windows 资源对象（由 task gen-res 从 assets/app.ico 生成）
+*.syso

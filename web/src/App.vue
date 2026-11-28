@@ -20,7 +20,10 @@ const themeOverrides: GlobalThemeOverrides = {
   <NConfigProvider :theme-overrides="themeOverrides">
     <div class="layout">
       <header class="header">
-        <div class="brand">Crysnal 管理中心</div>
+        <div class="brand">
+          <img class="brand-logo" src="@/assets/logo.svg" alt="" />
+          <span>Crysnal 管理中心</span>
+        </div>
       </header>
 
       <div class="body">
@@ -97,8 +100,18 @@ const themeOverrides: GlobalThemeOverrides = {
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 18px;
   font-weight: 600;
+}
+
+/* 13 格像素画：26px = 每格正好 2px，非 13 倍数会出现格宽忽大忽小的锯齿 */
+.brand-logo {
+  display: block;
+  width: 26px;
+  height: 26px;
 }
 
 .menu {

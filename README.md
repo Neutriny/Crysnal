@@ -1,4 +1,4 @@
-# Crysnal
+  <img src="docs/banner.png" alt="Crysnal">
 
 > [!WARNING]
 > 项目目前处于前期开发阶段
